@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>HRM Portal - Payroll</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            HRM <span>Portal</span>
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                🏠 Dashboard
+            </a>
+
+            <a href="employees.html">
+                👥 Employees
+            </a>
+
+            <a href="attendance.html">
+                🕒 Attendance
+            </a>
+
+            <a href="leave.html">
+                📅 Leave
+            </a>
+
+            <a href="payroll.html" class="active">
+                💰 Payroll
+            </a>
+
+            <a href="departments.html">
+                🏢 Departments
+            </a>
+
+            <a href="performance.html">
+                📊 Performance
+            </a>
+
+            <a href="setting.html">
+                ⚙️ Settings
+            </a>
+
+        </nav>
+
+
+        <button
+            class="logout-btn"
+            id="logoutBtn">
+
+            Logout
+
+        </button>
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Payroll
+                </h1>
+
+                <p>
+                    Manage employee salary records
+                </p>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <strong>
+                        Admin
+                    </strong>
+
+                    <small>
+                        HR Manager
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- PAYROLL PANEL -->
+
+        <section class="panel">
+
+
+            <!-- HEADER -->
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Payroll Records
+                    </h2>
+
+                    <p>
+                        Manage employee salary details
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    id="addPayrollBtn">
+
+                    + Add Payroll
+
+                </button>
+
+            </div>
+
+
+
+            <!-- SEARCH -->
+
+            <div class="toolbar">
+
+                <input
+                    type="text"
+                    id="payrollSearch"
+                    placeholder="Search employee...">
+
+            </div>
+
+
+
+            <!-- PAYROLL FORM -->
+
+            <div
+                id="payrollForm"
+                class="form-box hidden">
+
+
+                <h2>
+                    Add Payroll
+                </h2>
+
+
+                <div class="form-grid">
+
+
+                    <!-- EMPLOYEE -->
+
+                    <select id="payrollEmployee">
+
+                        <option value="">
+                            Select Employee
+                        </option>
+
+                    </select>
+
+
+
+                    <!-- BASIC SALARY -->
+
+                    <input
+                        type="number"
+                        id="basicSalary"
+                        placeholder="Basic Salary">
+
+
+
+                    <!-- ALLOWANCE -->
+
+                    <input
+                        type="number"
+                        id="allowance"
+                        placeholder="Allowances">
+
+
+
+                    <!-- DEDUCTION -->
+
+                    <input
+                        type="number"
+                        id="deduction"
+                        placeholder="Deductions">
+
+
+                </div>
+
+
+
+                <!-- FORM BUTTONS -->
+
+                <div class="form-actions">
+
+
+                    <button
+                        class="primary-btn"
+                        id="savePayrollBtn">
+
+                        Save Payroll
+
+                    </button>
+
+
+                    <button
+                        class="secondary-btn"
+                        id="cancelPayrollBtn">
+
+                        Cancel
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- SUMMARY CARDS -->
+
+            <div class="cards">
+
+
+                <div class="stat-card">
+
+                    <span>
+                        👥
+                    </span>
+
+                    <div>
+
+                        <h3 id="payrollEmployees">
+                            0
+                        </h3>
+
+                        <p>
+                            Employees
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <span>
+                        💰
+                    </span>
+
+                    <div>
+
+                        <h3 id="totalBasic">
+                            ₹0
+                        </h3>
+
+                        <p>
+                            Total Basic
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <span>
+                        ➕
+                    </span>
+
+                    <div>
+
+                        <h3 id="totalAllowance">
+                            ₹0
+                        </h3>
+
+                        <p>
+                            Total Allowances
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <span>
+                        💳
+                    </span>
+
+                    <div>
+
+                        <h3 id="totalNetSalary">
+                            ₹0
+                        </h3>
+
+                        <p>
+                            Total Net Salary
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- TABLE -->
+
+            <div class="panel-header">
+
+                <h2>
+                    Salary Records
+                </h2>
+
+            </div>
+
+
+            <table>
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Employee ID
+                        </th>
+
+                        <th>
+                            Employee
+                        </th>
+
+                        <th>
+                            Basic Salary
+                        </th>
+
+                        <th>
+                            Allowances
+                        </th>
+
+                        <th>
+                            Deductions
+                        </th>
+
+                        <th>
+                            Net Salary
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                        <th>
+                            Delete
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="payrollBody">
+                </tbody>
+
+
+            </table>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <script src="payroll.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HRM Portal - Performance</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            HRM <span>Portal</span>
+        </div>
+
+        <nav>
+
+            <a href="index.html">
+                🏠 Dashboard
+            </a>
+
+            <a href="employees.html">
+                👥 Employees
+            </a>
+
+            <a href="attendance.html">
+                🕒 Attendance
+            </a>
+
+            <a href="leave.html">
+                📅 Leave
+            </a>
+
+            <a href="payroll.html">
+                💰 Payroll
+            </a>
+
+            <a href="departments.html">
+                🏢 Departments
+            </a>
+
+            <a href="performance.html" class="active">
+                📊 Performance
+            </a>
+
+            <a href="setting.html">
+                ⚙️ Settings
+            </a>
+
+        </nav>
+
+        <button class="logout-btn" onclick="logout()">
+            Logout
+        </button>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h1>Performance</h1>
+                <p>Track employee evaluation and growth.</p>
+            </div>
+
+            <div class="profile">
+
+                <div class="avatar">
+                    A
+                </div>
+
+                <div>
+                    <strong>Admin</strong>
+                    <small>HR Manager</small>
+                </div>
+
+            </div>
+
+        </header>
+
+        <section class="panel">
+
+            <div class="panel-header">
+                <div>
+                    <h2>Performance Review</h2>
+                </div>
+            </div>
+
+            <div class="performance-filter">
+
+                <div class="field-group">
+                    <label for="employeeIdSearch">Employee ID</label>
+                    <input id="employeeIdSearch" type="text" placeholder="Search by Employee ID" aria-label="Search by Employee ID">
+                </div>
+
+                <div class="field-group">
+                    <label>Review Period</label>
+                    <div class="review-period-text">Monthly</div>
+                </div>
+
+            </div>
+
+            <div id="performanceDetails" class="hidden">
+
+                <div class="info-grid">
+
+                    <div class="info-box">
+                        <span>Employee ID</span>
+                        <strong id="detailEmployeeId">-</strong>
+                    </div>
+
+                    <div class="info-box">
+                        <span>Name</span>
+                        <strong id="detailName">-</strong>
+                    </div>
+
+                    <div class="info-box">
+                        <span>Department</span>
+                        <strong id="detailDepartment">-</strong>
+                    </div>
+
+                    <div class="info-box">
+                        <span>Role</span>
+                        <strong id="detailRole">-</strong>
+                    </div>
+
+                    <div class="info-box">
+                        <span>Joining Date</span>
+                        <strong id="detailJoiningDate">-</strong>
+                    </div>
+
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="perf-card perf-card-blue">
+                        <span>📈</span>
+                        <h3 id="overallScore">0%</h3>
+                        <p>Overall Performance %</p>
+                    </div>
+
+                    <div class="perf-card perf-card-green">
+                        <span>✅</span>
+                        <h3 id="taskCompletion">0%</h3>
+                        <p>Task Completion %</p>
+                    </div>
+
+                    <div class="perf-card perf-card-yellow">
+                        <span>⏰</span>
+                        <h3 id="attendancePercent">0%</h3>
+                        <p>Attendance %</p>
+                    </div>
+
+                </div>
+
+                <div class="table-panel">
+                    <h3>Performance Breakdown</h3>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Target</th>
+                                <th>Achieved</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody id="breakdownBody"></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="performance.js"></script>
+
+</body>
+
+</html>

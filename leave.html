@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>HRM Portal - Leave</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            HRM <span>Portal</span>
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                🏠 Dashboard
+            </a>
+
+            <a href="employees.html">
+                👥 Employees
+            </a>
+
+            <a href="attendance.html">
+                🕒 Attendance
+            </a>
+
+            <a href="leave.html" class="active">
+                📅 Leave
+            </a>
+
+            <a href="payroll.html">
+                💰 Payroll
+            </a>
+
+            <a href="departments.html">
+                🏢 Departments
+            </a>
+
+            <a href="performance.html">
+                📊 Performance
+            </a>
+
+            <a href="setting.html">
+                ⚙️ Settings
+            </a>
+
+        </nav>
+
+
+        <button
+            class="logout-btn"
+            id="logoutBtn">
+
+            Logout
+
+        </button>
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Leave Management
+                </h1>
+
+                <p>
+                    Manage employee leave requests
+                </p>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <strong>
+                        Admin
+                    </strong>
+
+                    <small>
+                        HR Manager
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- LEAVE PANEL -->
+
+        <section class="panel">
+
+
+            <!-- HEADER -->
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Leave Requests
+                    </h2>
+
+                    <p>
+                        View and manage employee leaves
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    id="addLeaveBtn">
+
+                    + Add Employee Leave
+
+                </button>
+
+            </div>
+
+
+
+            <!-- SEARCH -->
+
+            <div class="toolbar">
+
+                <input
+                    type="text"
+                    id="leaveSearch"
+                    placeholder="Search employee...">
+
+            </div>
+
+
+
+            <!-- LEAVE FORM -->
+
+            <div
+                id="leaveForm"
+                class="form-box hidden">
+
+
+                <h2>
+                    Apply Leave
+                </h2>
+
+
+                <div class="form-grid">
+
+
+                    <!-- EMPLOYEE -->
+
+                    <select id="leaveEmployee">
+
+                        <option value="">
+                            Select Employee
+                        </option>
+
+                    </select>
+
+
+
+                    <!-- LEAVE TYPE -->
+
+                    <select id="leaveType">
+
+                        <option value="">
+                            Select Leave Type
+                        </option>
+
+                        <option value="Casual Leave">
+                            Casual Leave
+                        </option>
+
+                        <option value="Sick Leave">
+                            Sick Leave
+                        </option>
+
+                        <option value="Earned Leave">
+                            Earned Leave
+                        </option>
+
+                        <option value="Emergency Leave">
+                            Emergency Leave
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+
+
+                    <!-- START DATE -->
+
+                    <input
+                        type="date"
+                        id="leaveStartDate">
+
+
+
+                    <!-- END DATE -->
+
+                    <input
+                        type="date"
+                        id="leaveEndDate">
+
+
+                </div>
+
+
+
+                <!-- REASON -->
+
+                <textarea
+                    id="leaveReason"
+                    placeholder="Enter reason for leave"
+                    rows="4">
+                </textarea>
+
+
+
+                <!-- FORM BUTTONS -->
+
+                <div class="form-actions">
+
+
+                    <button
+                        class="primary-btn"
+                        id="saveLeaveBtn">
+
+                        Save Leave
+
+                    </button>
+
+
+                    <button
+                        class="secondary-btn"
+                        id="cancelLeaveBtn">
+
+                        Cancel
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- SUMMARY CARDS -->
+
+            <div class="cards">
+
+
+                <div class="stat-card">
+
+                    <span>
+                        📋
+                    </span>
+
+                    <div>
+
+                        <h3 id="totalLeave">
+                            0
+                        </h3>
+
+                        <p>
+                            Total Requests
+                        </p>
+
+                    </div>
+
+                </div>
+               
+
+
+
+                <div class="stat-card">
+
+                    <span>
+                        🟡
+                    </span>
+
+                    <div>
+
+                        <h3 id="pendingLeave">
+                            0
+                        </h3>
+
+                        <p>
+                            Pending
+                        </p>
+
+                    </div>
+
+                </div>
+ 
+
+
+
+                <div class="stat-card">
+
+                    <span>
+                        🟢
+                    </span>
+
+                    <div>
+
+                        <h3 id="approvedLeave">
+                            0
+                        </h3>
+
+                        <p>
+                            Approved
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        🔴
+                    </span>
+
+                    <div>
+
+                        <h3 id="rejectedLeave">
+                            0
+                        </h3>
+
+                        <p>
+                            Rejected
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- TABLE -->
+
+            <div class="panel-header">
+
+                <h2>
+                    Leave Records
+                </h2>
+
+            </div>
+
+
+
+            <table>
+
+<thead>
+
+    <tr>
+
+        <th>
+            Employee ID
+        </th>
+
+        <th>
+            Employee
+        </th>
+
+        <th>
+            Leave Type
+        </th>
+
+        <th>
+            Start Date
+        </th>
+
+        <th>
+            End Date
+        </th>
+
+        <th>
+            Status
+        </th>
+
+        <th>
+            Action 1
+        </th>
+
+        <th>
+            Action 2
+        </th>
+
+        <th>
+            Delete
+        </th>
+
+    </tr>
+
+</thead>
+
+
+                <tbody id="leaveBody">
+                </tbody>
+
+
+            </table>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <script src="leave.js"></script>
+
+
+</body>
+
+</html>

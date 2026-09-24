@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HRM Portal - Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            HRM <span>Portal</span>
+        </div>
+
+        <nav>
+
+            <a href="index.html" class="active">
+                🏠 Dashboard
+            </a>
+
+            <a href="employees.html">
+                👥 Employees
+            </a>
+
+            <a href="attendance.html">
+                🕒 Attendance
+            </a>
+
+            <a href="leave.html">
+                📅 Leave
+            </a>
+
+            <a href="payroll.html">
+                💰 Payroll
+            </a>
+
+            <a href="departments.html">
+                🏢 Departments
+            </a>
+
+            <a href="performance.html">
+                📊 Performance
+            </a>
+
+            <a href="setting.html">
+                ⚙️ Settings
+            </a>
+
+        </nav>
+
+        <button class="logout-btn" onclick="logout()">
+            Logout
+        </button>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Dashboard
+                </h1>
+
+                <p>
+                    Welcome back! Here is today's HR overview.
+                </p>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="notification-wrapper" id="notificationWrapper">
+                    <button class="notification-btn" id="notificationBtn" aria-label="Notifications" onclick="toggleNotificationDropdown()" type="button">
+                        <span class="bell-icon">🔔</span>
+                        <span class="notification-badge" id="notificationBadge">3</span>
+                    </button>
+
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="notification-header">
+                            <div class="notification-title-group">
+                                <h3>Notifications</h3>
+                                <span class="unread-count-tag" id="unreadCountTag">3 New</span>
+                            </div>
+                            <button class="mark-read-btn" id="markAllReadBtn" onclick="markAllNotificationsAsRead()" type="button">Mark all read</button>
+                        </div>
+
+                        <div class="notification-list" id="notificationList"></div>
+
+                        <div class="notification-footer">
+                            <button class="clear-all-btn" onclick="clearAllNotifications()" type="button">Clear All</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile">
+
+                    <div class="avatar">
+                        A
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Admin
+                        </strong>
+
+                        <small>
+                            HR Manager
+                        </small>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </header>
+
+
+
+        <!-- ================= STAT CARDS ================= -->
+
+        <section class="cards">
+
+
+            <div class="stat-card">
+
+                <span>
+                    👥
+                </span>
+
+                <div>
+
+                    <h3 id="employeeCount">
+                        120
+                    </h3>
+
+                    <p>
+                        Total Employees
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <span>
+                    🟢
+                </span>
+
+                <div>
+
+                    <h3 id="presentCount">
+                        108
+                    </h3>
+
+                    <p>
+                        Present Today
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <span>
+                    📅
+                </span>
+
+                <div>
+
+                    <h3 id="leaveCount">
+                        8
+                    </h3>
+
+                    <p>
+                        On Leave
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <span>
+                    💰
+                </span>
+
+                <div>
+
+                    <h3>
+                        ₹8.4L
+                    </h3>
+
+                    <p>
+                        Monthly Payroll
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ================= DASHBOARD GRID ================= -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- RECENT EMPLOYEES -->
+
+            <div class="panel" id="recentEmployeesPanel" draggable="true">
+
+                <div class="panel-header">
+
+                    <h2>
+                        Recent Employees
+                    </h2>
+
+                    <a href="employees.html">
+                        View All
+                    </a>
+
+                </div>
+
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Name
+                            </th>
+
+                            <th>
+                                Department
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                Rahul Kumar
+                            </td>
+
+                            <td>
+                                IT
+                            </td>
+
+                            <td>
+                                <span class="badge success">
+                                    Active
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Sneha Reddy
+                            </td>
+
+                            <td>
+                                HR
+                            </td>
+
+                            <td>
+                                <span class="badge success">
+                                    Active
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Arjun Rao
+                            </td>
+
+                            <td>
+                                Finance
+                            </td>
+
+                            <td>
+                                <span class="badge warning">
+                                    On Leave
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Priya Sharma
+                            </td>
+
+                            <td>
+                                Sales
+                            </td>
+
+                            <td>
+                                <span class="badge success">
+                                    Active
+                                </span>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+
+        </section>
+
+    </main>
+
+
+    <!-- IMPORTANT:
+         JavaScript is NOT inside HTML.
+         It is in a separate file.
+    -->
+
+    <script src="index.js"></script>
+
+</body>
+
+</html>

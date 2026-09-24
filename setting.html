@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HRM Portal - Settings</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            HRM <span>Portal</span>
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                🏠 Dashboard
+            </a>
+
+            <a href="employees.html">
+                👥 Employees
+            </a>
+
+            <a href="attendance.html">
+                🕒 Attendance
+            </a>
+
+            <a href="leave.html">
+                📅 Leave
+            </a>
+
+            <a href="payroll.html">
+                💰 Payroll
+            </a>
+
+            <a href="departments.html">
+                🏢 Departments
+            </a>
+
+            <a href="performance.html">
+                📊 Performance
+            </a>
+
+            <a href="setting.html" class="active">
+                ⚙️ Settings
+            </a>
+
+        </nav>
+
+
+        <button class="logout-btn" id="logoutBtn">
+            Logout
+        </button>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Settings
+                </h1>
+
+                <p>
+                    Manage your HRM Portal settings
+                </p>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="avatar">
+                    V
+                </div>
+
+                <div>
+
+                    <strong>
+                        Admin
+                    </strong>
+
+                    <small>
+                        HR Manager
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             SETTINGS
+        ================================================== -->
+
+        <section class="settings-grid">
+
+
+            <!-- =================================================
+                 PROFILE SETTINGS
+            ================================================== -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            👤 Profile Settings
+                        </h2>
+
+                        <p>
+                            Update administrator information
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <input
+                        type="text"
+                        id="adminName"
+                        placeholder="Admin Name">
+
+
+                    <input
+                        type="email"
+                        id="adminEmail"
+                        placeholder="Email Address">
+
+
+                    <input
+                        type="text"
+                        id="adminRole"
+                        placeholder="Role">
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        class="primary-btn"
+                        id="saveProfileBtn">
+
+                        Save Profile
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CHANGE PASSWORD
+            ================================================== -->
+
+           <!-- =================================================
+     CHANGE PASSWORD
+================================================== -->
+
+<div class="panel">
+
+    <div class="panel-header">
+
+        <div>
+
+            <h2>
+                🔐 Change Password
+            </h2>
+
+            <p>
+                Update your account password
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="form-grid">
+
+        <input
+            type="password"
+            id="currentPassword"
+            placeholder="Current Password">
+
+
+        <input
+            type="password"
+            id="newPassword"
+            placeholder="New Password">
+
+
+        <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm New Password">
+
+    </div>
+
+
+    <div class="form-actions">
+
+        <button
+            class="primary-btn"
+            id="changePasswordBtn">
+
+            Change Password
+
+        </button>
+
+    </div>
+
+
+    <div class="forgot-password">
+
+        <button
+            type="button"
+            id="forgotPasswordBtn">
+
+            Forgot Password?
+
+        </button>
+
+    </div>
+
+
+    <!-- RESET PASSWORD FORM -->
+
+    <div
+        id="resetPasswordForm"
+        class="form-box hidden">
+
+        <h3>
+            Reset Password
+        </h3>
+
+        <p>
+            Create a new password.
+        </p>
+
+
+        <input
+            type="password"
+            id="resetNewPassword"
+            placeholder="New Password">
+
+
+        <input
+            type="password"
+            id="resetConfirmPassword"
+            placeholder="Confirm New Password">
+
+
+        <div class="form-actions">
+
+            <button
+                class="primary-btn"
+                id="resetPasswordBtn">
+
+                Reset Password
+
+            </button>
+
+
+            <button
+                class="secondary-btn"
+                id="cancelResetBtn">
+
+                Cancel
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+                  
+
+
+
+            <!-- =================================================
+                 NOTIFICATION SETTINGS
+            ================================================== -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            🔔 Notifications
+                        </h2>
+
+                        <p>
+                            Manage system notifications
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-option">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            id="leaveNotification">
+
+                        Leave Request Notifications
+
+                    </label>
+
+                </div>
+
+
+                <div class="settings-option">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            id="attendanceNotification">
+
+                        Attendance Notifications
+
+                    </label>
+
+                </div>
+
+
+                <div class="settings-option">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            id="payrollNotification">
+
+                        Payroll Notifications
+
+                    </label>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        class="primary-btn"
+                        id="saveNotificationBtn">
+
+                        Save Notifications
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SYSTEM SETTINGS
+            ================================================== -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            ⚙️ System Settings
+                        </h2>
+
+                        <p>
+                            Manage general portal preferences
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-option">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            id="compactMode">
+
+                        Compact Mode
+
+                    </label>
+
+                </div>
+
+
+                <div class="settings-option">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            id="confirmDelete">
+
+                        Confirm Before Delete
+
+                    </label>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        class="primary-btn"
+                        id="saveSystemBtn">
+
+                        Save Settings
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="setting.js"></script>
+
+
+</body>
+
+</html>

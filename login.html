@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HRM Portal - Admin Login</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body class="login-page">
+
+
+    <!-- ================================
+         LOGIN BOX
+    ================================= -->
+
+    <div class="login-container" id="loginBox">
+
+        <div class="login-card">
+
+            <div class="login-logo">
+                HRM <span>Portal</span>
+            </div>
+
+            <h1>Admin Login</h1>
+
+            <p class="login-subtitle">
+                Login to manage your HRM Portal
+            </p>
+
+
+            <!-- Email -->
+
+            <div class="login-field">
+
+                <label for="adminEmail">
+                    Admin Email
+                </label>
+
+                <input
+                    type="email"
+                    id="adminEmail"
+                    placeholder="Enter admin email"
+                >
+
+            </div>
+
+
+            <!-- Password -->
+
+            <div class="login-field">
+
+                <label for="adminPassword">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="adminPassword"
+                    placeholder="Enter password"
+                >
+
+            </div>
+
+
+            <!-- Login Button -->
+
+            <button
+                type="button"
+                class="primary-btn login-btn"
+                id="loginBtn"
+            >
+                Login
+            </button>
+
+
+            <!-- Forgot Password -->
+
+            <div class="forgot-login">
+
+                <button
+                    type="button"
+                    id="forgotPasswordBtn"
+                >
+                    Forgot Password?
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================
+         FORGOT PASSWORD BOX
+    ================================= -->
+
+    <div
+        class="login-container hidden"
+        id="forgotBox"
+    >
+
+        <div class="login-card">
+
+            <div class="login-logo">
+                HRM <span>Portal</span>
+            </div>
+
+            <h1>Reset Password</h1>
+
+            <p class="login-subtitle">
+                Enter your admin email and create a new password.
+            </p>
+
+
+            <!-- Admin Email -->
+
+            <div class="login-field">
+
+                <label for="resetEmail">
+                    Admin Email
+                </label>
+
+                <input
+                    type="email"
+                    id="resetEmail"
+                    placeholder="Enter admin email"
+                >
+
+            </div>
+
+
+            <!-- New Password -->
+
+            <div class="login-field">
+
+                <label for="resetNewPassword">
+                    New Password
+                </label>
+
+                <input
+                    type="password"
+                    id="resetNewPassword"
+                    placeholder="Enter new password"
+                >
+
+            </div>
+
+
+            <!-- Confirm Password -->
+
+            <div class="login-field">
+
+                <label for="resetConfirmPassword">
+                    Confirm New Password
+                </label>
+
+                <input
+                    type="password"
+                    id="resetConfirmPassword"
+                    placeholder="Confirm new password"
+                >
+
+            </div>
+
+
+            <!-- Reset Button -->
+
+            <button
+                type="button"
+                class="primary-btn login-btn"
+                id="resetPasswordBtn"
+            >
+                Reset Password
+            </button>
+
+
+            <!-- Back Button -->
+
+            <div class="forgot-login">
+
+                <button
+                    type="button"
+                    id="backToLoginBtn"
+                >
+                    ← Back to Login
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- JavaScript -->
+
+    <script src="login.js"></script>
+
+</body>
+
+</html>

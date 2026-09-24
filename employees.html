@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>HRM Portal - Employees</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            HRM <span>Portal</span>
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                🏠 Dashboard
+            </a>
+
+            <a href="employees.html"
+               class="active">
+                👥 Employees
+            </a>
+
+            <a href="attendance.html">
+                🕒 Attendance
+            </a>
+
+            <a href="leave.html">
+                📅 Leave
+            </a>
+
+            <a href="payroll.html">
+                💰 Payroll
+            </a>
+
+            <a href="departments.html">
+                🏢 Departments
+            </a>
+
+            <a href="performance.html">
+                📊 Performance
+            </a>
+
+            <a href="setting.html">
+                ⚙️ Settings
+            </a>
+
+        </nav>
+
+
+        <button class="logout-btn"
+                onclick="logout()">
+
+            Logout
+
+        </button>
+
+    </aside>
+
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Employees
+                </h1>
+
+                <p>
+                    Manage employee records
+                </p>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <strong>
+                        Admin
+                    </strong>
+
+                    <small>
+                        HR Manager
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ================= EMPLOYEE PANEL ================= -->
+
+        <section class="panel">
+
+
+            <!-- TOOLBAR -->
+
+            <div class="toolbar">
+
+                <input
+                    type="text"
+                    id="employeeSearch"
+                    placeholder="Search employee..."
+                    oninput="searchEmployees()"
+                >
+
+
+                <button
+                    class="primary-btn"
+                    onclick="openEmployeeForm()">
+
+                    + Add Employee
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ================= ADD EMPLOYEE FORM ================= -->
+
+            <div id="employeeForm"
+                 class="form-box hidden">
+
+
+                <h2>
+                    Add Employee
+                </h2>
+
+
+                <div class="form-grid">
+
+
+                    <input
+                        type="text"
+                        id="empName"
+                        placeholder="Full Name"
+                    >
+
+
+                    <input
+                        type="email"
+                        id="empEmail"
+                        placeholder="Email"
+                    >
+
+
+                    <input
+                        type="text"
+                        id="empMobile"
+                        placeholder="Mobile Number"
+                        maxlength="10"
+                    >
+
+
+                    <input
+                        type="text"
+                        id="empDepartment"
+                        placeholder="Department"
+                    >
+
+
+                    <input
+                        type="text"
+                        id="empRole"
+                        placeholder="Job Role"
+                    >
+
+
+                    <div class="date-field">
+
+                        <label for="empJoiningDate">
+                            Joining Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="empJoiningDate"
+                        >
+
+                    </div>
+
+
+                    <div class="date-field">
+
+                        <label for="empExitDate">
+                            Exit Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="empExitDate"
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="form-actions">
+
+
+                    <button
+                        class="primary-btn"
+                        onclick="addEmployee()">
+
+                        Save Employee
+
+                    </button>
+
+
+                    <button
+                        class="secondary-btn"
+                        onclick="closeEmployeeForm()">
+
+                        Cancel
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= EMPLOYEE TABLE ================= -->
+
+            <table id="employeeTable">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            Name
+                        </th>
+
+                        <th>
+                            Email
+                        </th>
+
+                        <th>
+                            Mobile
+                        </th>
+
+                        <th>
+                            Department
+                        </th>
+
+                        <th>
+                            Role
+                        </th>
+
+                        <th>
+                            Joining Date
+                        </th>
+
+                        <th>
+                            Exit Date
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+
+                <tbody id="employeeBody">
+                </tbody>
+
+            </table>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="employees.js"></script>
+
+
+</body>
+
+</html>

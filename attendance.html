@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HRM Portal - Attendance</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            HRM <span>Portal</span>
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                🏠 Dashboard
+            </a>
+
+            <a href="employees.html">
+                👥 Employees
+            </a>
+
+            <a href="attendance.html" class="active">
+                🕒 Attendance
+            </a>
+
+            <a href="leave.html">
+                📅 Leave
+            </a>
+
+            <a href="payroll.html">
+                💰 Payroll
+            </a>
+
+            <a href="departments.html">
+                🏢 Departments
+            </a>
+
+            <a href="performance.html">
+                📊 Performance
+            </a>
+
+            <a href="setting.html">
+                ⚙️ Settings
+            </a>
+
+        </nav>
+
+
+        <button class="logout-btn" id="logoutBtn">
+            Logout
+        </button>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Attendance
+                </h1>
+
+                <p>
+                    Manage daily employee attendance
+                </p>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <strong>
+                        Admin
+                    </strong>
+
+                    <small>
+                        HR Manager
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             DATE SELECTION
+        ================================================== -->
+
+        <section class="panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Daily Attendance
+                    </h2>
+
+                    <p id="selectedDateText">
+                        Attendance for today
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    id="todayBtn">
+
+                    Today
+
+                </button>
+
+            </div>
+
+
+
+            <!-- DATE CONTROLS -->
+
+            <div class="toolbar">
+
+
+                <div>
+
+                    <label>
+                        Select Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="attendanceDate">
+
+                </div>
+
+
+                <div>
+
+                    <label>
+                        Search Employee
+                    </label>
+
+                    <input
+                        type="text"
+                        id="attendanceSearch"
+                        name="search"
+                        placeholder="Search employee...">
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    id="addAttendanceBtn">
+
+                    + Add Attendance
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ATTENDANCE FORM
+            ================================================== -->
+
+            <div
+                id="attendanceForm"
+                class="form-box hidden">
+
+
+                <h2>
+                    Add / Update Attendance
+                </h2>
+
+
+                <div class="form-grid">
+
+
+                    <select id="attendanceEmployee">
+
+                        <option value="">
+                            Select Employee
+                        </option>
+
+                    </select>
+
+
+                    <select id="attendanceStatus">
+
+                        <option value="">
+                            Select Attendance
+                        </option>
+
+                        <option value="Present">
+                            Present
+                        </option>
+
+                        <option value="Absent">
+                            Absent
+                        </option>
+
+                        <option value="Late">
+                            Late
+                        </option>
+
+                        <option value="Half Day">
+                            Half Day
+                        </option>
+
+                        <option value="Leave">
+                            Leave
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+
+                <div class="form-actions">
+
+
+                    <button
+                        class="primary-btn"
+                        id="saveAttendanceBtn">
+
+                        Save Attendance
+
+                    </button>
+
+
+                    <button
+                        class="secondary-btn"
+                        id="cancelAttendanceBtn">
+
+                        Cancel
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ATTENDANCE SUMMARY
+            ================================================== -->
+
+            <div class="cards">
+
+
+                <div class="stat-card">
+
+                    <span>
+                        👥
+                    </span>
+
+                    <div>
+
+                        <h3 id="totalEmployees">
+                            0
+                        </h3>
+
+                        <p>
+                            Total Employees
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <span>
+                        🟢
+                    </span>
+
+                    <div>
+
+                        <h3 id="presentCount">
+                            0
+                        </h3>
+
+                        <p>
+                            Present
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <span>
+                        🔴
+                    </span>
+
+                    <div>
+
+                        <h3 id="absentCount">
+                            0
+                        </h3>
+
+                        <p>
+                            Absent
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <span>
+                        🟡
+                    </span>
+
+                    <div>
+
+                        <h3 id="lateCount">
+                            0
+                        </h3>
+
+                        <p>
+                            Late
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ATTENDANCE TABLE
+            ================================================== -->
+
+            <div class="panel-header">
+
+                <h2>
+                    Attendance Records
+                </h2>
+
+            </div>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Employee ID
+                        </th>
+
+                        <th>
+                            Employee Name
+                        </th>
+
+                        <th>
+                            Department
+                        </th>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="attendanceBody">
+
+                </tbody>
+
+            </table>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             ATTENDANCE HISTORY
+        ================================================== -->
+
+        <section class="panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Attendance History
+                    </h2>
+
+                    <p>
+                        Select any previous date to view attendance
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="toolbar">
+
+
+                <input
+                    type="date"
+                    id="historyDate">
+
+
+                <button
+                    class="primary-btn"
+                    id="viewHistoryBtn">
+
+                    View Attendance
+
+                </button>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="attendance.js"></script>
+
+
+</body>
+
+</html>

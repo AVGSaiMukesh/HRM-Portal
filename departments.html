@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HRM Portal - Departments</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            HRM <span>Portal</span>
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                🏠 Dashboard
+            </a>
+
+            <a href="employees.html">
+                👥 Employees
+            </a>
+
+            <a href="attendance.html">
+                🕒 Attendance
+            </a>
+
+            <a href="leave.html">
+                📅 Leave
+            </a>
+
+            <a href="payroll.html">
+                💰 Payroll
+            </a>
+
+            <a href="departments.html" class="active">
+                🏢 Departments
+            </a>
+
+            <a href="performance.html">
+                📊 Performance
+            </a>
+
+            <a href="setting.html">
+                ⚙️ Settings
+            </a>
+
+        </nav>
+
+
+        <button class="logout-btn" id="logoutBtn">
+            Logout
+        </button>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Departments
+                </h1>
+
+                <p>
+                    Manage company departments
+                </p>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <strong>
+                        Admin
+                    </strong>
+
+                    <small>
+                        HR Manager
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             DEPARTMENT SECTION
+        ================================================== -->
+
+        <section class="panel">
+
+
+            <!-- HEADER -->
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Department Management
+                    </h2>
+
+                    <p>
+                        Add and manage company departments
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    id="addDepartmentBtn">
+
+                    + Add Department
+
+                </button>
+
+            </div>
+
+
+
+            <!-- SEARCH -->
+
+            <div class="toolbar">
+
+                <input
+                    type="text"
+                    id="departmentSearch"
+                    placeholder="Search department...">
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ADD DEPARTMENT FORM
+            ================================================== -->
+
+            <div
+                id="departmentForm"
+                class="form-box hidden">
+
+                <h2>
+                    Add Department
+                </h2>
+
+
+                <div class="form-grid">
+
+                    <input
+                        type="text"
+                        id="departmentName"
+                        placeholder="Department Name">
+
+
+                    <input
+                        type="text"
+                        id="departmentHead"
+                        placeholder="Department Head">
+
+
+                    <input
+                        type="text"
+                        id="departmentDescription"
+                        placeholder="Department Description">
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        class="primary-btn"
+                        id="saveDepartmentBtn">
+
+                        Save Department
+
+                    </button>
+
+
+                    <button
+                        class="secondary-btn"
+                        id="cancelDepartmentBtn">
+
+                        Cancel
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SUMMARY CARDS
+            ================================================== -->
+
+            <div class="cards">
+
+
+                <div class="stat-card">
+
+                    <span>
+                        🏢
+                    </span>
+
+                    <div>
+
+                        <h3 id="departmentCount">
+                            0
+                        </h3>
+
+                        <p>
+                            Total Departments
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <span>
+                        👥
+                    </span>
+
+                    <div>
+
+                        <h3 id="departmentEmployees">
+                            0
+                        </h3>
+
+                        <p>
+                            Employees
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 DEPARTMENT TABLE
+            ================================================== -->
+
+            <div class="panel-header">
+
+                <h2>
+                    Department List
+                </h2>
+
+            </div>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Department ID
+                        </th>
+
+                        <th>
+                            Department
+                        </th>
+
+                        <th>
+                            Department Head
+                        </th>
+
+                        <th>
+                            Employees
+                        </th>
+
+                        <th>
+                            Description
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                        <th>
+                            Delete
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="departmentBody">
+                </tbody>
+
+            </table>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="departments.js"></script>
+
+
+</body>
+
+</html>
