@@ -15,9 +15,7 @@
 
 </head>
 
-
 <body>
-
 
     <!-- ================= SIDEBAR ================= -->
 
@@ -27,15 +25,13 @@
             HRM <span>Portal</span>
         </div>
 
-
         <nav>
 
             <a href="index.html">
                 🏠 Dashboard
             </a>
 
-            <a href="employees.html"
-               class="active">
+            <a href="employees.html" class="active">
                 👥 Employees
             </a>
 
@@ -55,19 +51,15 @@
                 🏢 Departments
             </a>
 
-            <a href="performance.html">
-                📊 Performance
-            </a>
-
             <a href="setting.html">
                 ⚙️ Settings
             </a>
 
         </nav>
 
-
-        <button class="logout-btn"
-                onclick="logout()">
+        <button
+            class="logout-btn"
+            onclick="logout()">
 
             Logout
 
@@ -76,11 +68,9 @@
     </aside>
 
 
-
     <!-- ================= MAIN CONTENT ================= -->
 
     <main class="main-content">
-
 
         <!-- TOP BAR -->
 
@@ -122,11 +112,9 @@
         </header>
 
 
-
         <!-- ================= EMPLOYEE PANEL ================= -->
 
         <section class="panel">
-
 
             <!-- TOOLBAR -->
 
@@ -139,7 +127,6 @@
                     oninput="searchEmployees()"
                 >
 
-
                 <button
                     class="primary-btn"
                     onclick="openEmployeeForm()">
@@ -151,20 +138,20 @@
             </div>
 
 
+            <!-- ================= EMPLOYEE FORM ================= -->
 
-            <!-- ================= ADD EMPLOYEE FORM ================= -->
+            <div
+                id="employeeForm"
+                class="form-box hidden">
 
-            <div id="employeeForm"
-                 class="form-box hidden">
-
-
-                <h2>
+                <h2 id="employeeFormTitle">
                     Add Employee
                 </h2>
 
 
                 <div class="form-grid">
 
+                    <!-- NAME -->
 
                     <input
                         type="text"
@@ -173,6 +160,8 @@
                     >
 
 
+                    <!-- EMAIL -->
+
                     <input
                         type="email"
                         id="empEmail"
@@ -180,13 +169,17 @@
                     >
 
 
+                    <!-- MOBILE -->
+
                     <input
-                        type="text"
+                        type="tel"
                         id="empMobile"
                         placeholder="Mobile Number"
                         maxlength="10"
                     >
 
+
+                    <!-- DEPARTMENT -->
 
                     <input
                         type="text"
@@ -195,12 +188,16 @@
                     >
 
 
+                    <!-- ROLE -->
+
                     <input
                         type="text"
                         id="empRole"
                         placeholder="Job Role"
                     >
 
+
+                    <!-- JOINING DATE -->
 
                     <div class="date-field">
 
@@ -216,6 +213,8 @@
                     </div>
 
 
+                    <!-- EXIT DATE -->
+
                     <div class="date-field">
 
                         <label for="empExitDate">
@@ -229,15 +228,15 @@
 
                     </div>
 
-
                 </div>
 
 
+                <!-- FORM BUTTONS -->
 
                 <div class="form-actions">
 
-
                     <button
+                        id="saveEmployeeBtn"
                         class="primary-btn"
                         onclick="addEmployee()">
 
@@ -254,81 +253,64 @@
 
                     </button>
 
-
                 </div>
 
             </div>
 
 
-
             <!-- ================= EMPLOYEE TABLE ================= -->
 
-            <table id="employeeTable">
+            <div class="table-container">
+
+                <table id="employeeTable">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Name</th>
+
+                            <th>Email</th>
+
+                            <th>Mobile Number</th>
+
+                            <th>Department</th>
+
+                            <th>Role</th>
+
+                            <th>Joining Date</th>
+
+                            <th>Exit Date</th>
+
+                            <th>Action</th>
+
+                            <th>Edit Details</th>
+
+                        </tr>
+
+                    </thead>
 
 
-                <thead>
+                    <tbody id="employeeBody">
 
-                    <tr>
+                        <!-- Employees loaded by JavaScript -->
 
-                        <th>
-                            ID
-                        </th>
+                    </tbody>
 
-                        <th>
-                            Name
-                        </th>
+                </table>
 
-                        <th>
-                            Email
-                        </th>
-
-                        <th>
-                            Mobile
-                        </th>
-
-                        <th>
-                            Department
-                        </th>
-
-                        <th>
-                            Role
-                        </th>
-
-                        <th>
-                            Joining Date
-                        </th>
-
-                        <th>
-                            Exit Date
-                        </th>
-
-                        <th>
-                            Action
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-
-
-                <tbody id="employeeBody">
-                </tbody>
-
-            </table>
-
+            </div>
 
         </section>
-
 
     </main>
 
 
-
-    <!-- ================= JAVASCRIPT ================= -->
+    <!-- JAVASCRIPT -->
 
     <script src="employees.js"></script>
-
 
 </body>
 

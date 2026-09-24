@@ -5,18 +5,21 @@
 
 // =====================================================
 // GET EMPLOYEES FROM LOCAL STORAGE
+// Uses the same key as employees.js
 // =====================================================
 
 let employees =
-    JSON.parse(localStorage.getItem("employees")) || [];
+    JSON.parse(localStorage.getItem("hrmEmployees")) || [];
 
 
 // =====================================================
-// GET ATTENDANCE RECORDS FROM LOCAL STORAGE
+// GET ATTENDANCE RECORDS
 // =====================================================
 
 let attendanceRecords =
-    JSON.parse(localStorage.getItem("attendanceRecords")) || [];
+    JSON.parse(
+        localStorage.getItem("attendanceRecords")
+    ) || [];
 
 
 // =====================================================
@@ -45,10 +48,12 @@ function getToday() {
         today.getFullYear();
 
     const month =
-        String(today.getMonth() + 1).padStart(2, "0");
+        String(today.getMonth() + 1)
+        .padStart(2, "0");
 
     const day =
-        String(today.getDate()).padStart(2, "0");
+        String(today.getDate())
+        .padStart(2, "0");
 
     return `${year}-${month}-${day}`;
 
@@ -61,10 +66,28 @@ function getToday() {
 
 function formatDate(dateString) {
 
+    if (!dateString) {
+        return "";
+    }
+
     const parts =
         dateString.split("-");
 
     return `${parts[2]}-${parts[1]}-${parts[0]}`;
+
+}
+
+
+// =====================================================
+// REFRESH EMPLOYEES
+// =====================================================
+
+function refreshEmployees() {
+
+    employees =
+        JSON.parse(
+            localStorage.getItem("hrmEmployees")
+        ) || [];
 
 }
 
@@ -75,10 +98,20 @@ function formatDate(dateString) {
 
 function loadEmployees() {
 
+    // Get latest employee data
+    refreshEmployees();
+
+
     const employeeSelect =
         document.getElementById(
             "attendanceEmployee"
         );
+
+
+    if (!employeeSelect) {
+        return;
+    }
+
 
     employeeSelect.innerHTML = `
         <option value="">
@@ -89,14 +122,25 @@ function loadEmployees() {
 
     employees.forEach(function(employee) {
 
+        // Don't show employees who have exited
+        if (employee.exitDate) {
+
+            return;
+
+        }
+
+
         const option =
             document.createElement("option");
+
 
         option.value =
             employee.id;
 
+
         option.textContent =
             `${employee.name} (${employee.id})`;
+
 
         employeeSelect.appendChild(option);
 
@@ -123,7 +167,7 @@ function displaySelectedDate() {
         );
 
 
-    if (date === "") {
+    if (!date) {
 
         dateText.textContent =
             "Please select a date";
@@ -134,7 +178,8 @@ function displaySelectedDate() {
 
 
     dateText.textContent =
-        "Attendance for " + formatDate(date);
+        "Attendance for " +
+        formatDate(date);
 
 }
 
@@ -144,6 +189,9 @@ function displaySelectedDate() {
 // =====================================================
 
 function displayAttendance() {
+
+    refreshEmployees();
+
 
     const selectedDate =
         document.getElementById(
@@ -161,118 +209,128 @@ function displayAttendance() {
 
 
     let recordsForDate =
-        attendanceRecords.filter(function(record) {
+        attendanceRecords.filter(
+            function(record) {
 
-            return record.date === selectedDate;
+                return record.date === selectedDate;
 
-        });
+            }
+        );
+
+
+    const searchInput =
+        document.getElementById(
+            "attendanceSearch"
+        );
 
 
     const searchValue =
-        document.getElementById(
-            "attendanceSearch"
-        ).value.toLowerCase();
+        searchInput
+            ? searchInput.value.toLowerCase()
+            : "";
 
 
     recordsForDate =
-        recordsForDate.filter(function(record) {
+        recordsForDate.filter(
+            function(record) {
 
-            return (
-                record.name
+                return record.name
                     .toLowerCase()
-                    .includes(searchValue)
-            );
+                    .includes(searchValue);
 
-        });
-
-
-    recordsForDate.forEach(function(record) {
-
-        const row =
-            document.createElement("tr");
+            }
+        );
 
 
-        let statusClass =
-            "success";
+    recordsForDate.forEach(
+        function(record) {
+
+            const row =
+                document.createElement("tr");
 
 
-        if (record.status === "Absent") {
+            let statusClass =
+                "success";
 
-            statusClass =
-                "danger";
+
+            if (record.status === "Absent") {
+
+                statusClass =
+                    "danger";
+
+            }
+
+
+            if (
+                record.status === "Late" ||
+                record.status === "Half Day" ||
+                record.status === "Leave"
+            ) {
+
+                statusClass =
+                    "warning";
+
+            }
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${record.employeeId}
+                </td>
+
+                <td>
+                    ${record.name}
+                </td>
+
+                <td>
+                    ${record.department}
+                </td>
+
+                <td>
+                    ${formatDate(record.date)}
+                </td>
+
+                <td>
+
+                    <span class="badge ${statusClass}">
+                        ${record.status}
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <button
+                        class="small-btn"
+                        data-action="edit"
+                        data-id="${record.employeeId}"
+                        data-date="${record.date}">
+
+                        Edit
+
+                    </button>
+
+
+                    <button
+                        class="small-btn danger"
+                        data-action="delete"
+                        data-id="${record.employeeId}"
+                        data-date="${record.date}">
+
+                        Delete
+
+                    </button>
+
+                </td>
+
+            `;
+
+
+            attendanceBody.appendChild(row);
 
         }
-
-
-        if (
-            record.status === "Late" ||
-            record.status === "Half Day" ||
-            record.status === "Leave"
-        ) {
-
-            statusClass =
-                "warning";
-
-        }
-
-
-        row.innerHTML = `
-
-            <td>
-                ${record.employeeId}
-            </td>
-
-            <td>
-                ${record.name}
-            </td>
-
-            <td>
-                ${record.department}
-            </td>
-
-            <td>
-                ${formatDate(record.date)}
-            </td>
-
-            <td>
-
-                <span class="badge ${statusClass}">
-                    ${record.status}
-                </span>
-
-            </td>
-
-            <td>
-
-                <button
-                    class="small-btn"
-                    data-action="edit"
-                    data-id="${record.employeeId}"
-                    data-date="${record.date}">
-
-                    Edit
-
-                </button>
-
-
-                <button
-                    class="small-btn danger"
-                    data-action="delete"
-                    data-id="${record.employeeId}"
-                    data-date="${record.date}">
-
-                    Delete
-
-                </button>
-
-            </td>
-
-        `;
-
-
-        attendanceBody.appendChild(row);
-
-    });
+    );
 
 
     addTableEvents();
@@ -294,53 +352,55 @@ function addTableEvents() {
         );
 
 
-    buttons.forEach(function(button) {
+    buttons.forEach(
+        function(button) {
 
-        button.addEventListener(
-            "click",
-            function() {
+            button.addEventListener(
+                "click",
+                function() {
 
-                const employeeId =
-                    this.getAttribute(
-                        "data-id"
-                    );
-
-
-                const date =
-                    this.getAttribute(
-                        "data-date"
-                    );
+                    const employeeId =
+                        this.getAttribute(
+                            "data-id"
+                        );
 
 
-                const action =
-                    this.getAttribute(
-                        "data-action"
-                    );
+                    const date =
+                        this.getAttribute(
+                            "data-date"
+                        );
 
 
-                if (action === "edit") {
+                    const action =
+                        this.getAttribute(
+                            "data-action"
+                        );
 
-                    editAttendance(
-                        employeeId,
-                        date
-                    );
+
+                    if (action === "edit") {
+
+                        editAttendance(
+                            employeeId,
+                            date
+                        );
+
+                    }
+
+
+                    if (action === "delete") {
+
+                        deleteAttendance(
+                            employeeId,
+                            date
+                        );
+
+                    }
 
                 }
+            );
 
-
-                if (action === "delete") {
-
-                    deleteAttendance(
-                        employeeId,
-                        date
-                    );
-
-                }
-
-            }
-        );
-
-    });
+        }
+    );
 
 }
 
@@ -350,6 +410,11 @@ function addTableEvents() {
 // =====================================================
 
 function openAttendanceForm() {
+
+    refreshEmployees();
+
+    loadEmployees();
+
 
     document
         .getElementById("attendanceForm")
@@ -389,6 +454,9 @@ function closeAttendanceForm() {
 
 function saveAttendanceRecord() {
 
+    refreshEmployees();
+
+
     const employeeId =
         document.getElementById(
             "attendanceEmployee"
@@ -407,8 +475,6 @@ function saveAttendanceRecord() {
         ).value;
 
 
-    // CHECK FIELDS
-
     if (
         employeeId === "" ||
         status === "" ||
@@ -424,14 +490,14 @@ function saveAttendanceRecord() {
     }
 
 
-    // FIND EMPLOYEE
-
     const employee =
-        employees.find(function(employee) {
+        employees.find(
+            function(employee) {
 
-            return employee.id === employeeId;
+                return employee.id === employeeId;
 
-        });
+            }
+        );
 
 
     if (!employee) {
@@ -445,20 +511,20 @@ function saveAttendanceRecord() {
     }
 
 
-    // CHECK IF RECORD ALREADY EXISTS
-
     const existingRecord =
-        attendanceRecords.find(function(record) {
+        attendanceRecords.find(
+            function(record) {
 
-            return (
-                record.employeeId === employeeId &&
-                record.date === date
-            );
+                return (
+                    record.employeeId === employeeId &&
+                    record.date === date
+                );
 
-        });
+            }
+        );
 
 
-    // UPDATE EXISTING RECORD
+    // UPDATE
 
     if (existingRecord) {
 
@@ -468,9 +534,7 @@ function saveAttendanceRecord() {
 
         saveAttendance();
 
-
         displayAttendance();
-
 
         closeAttendanceForm();
 
@@ -478,7 +542,6 @@ function saveAttendanceRecord() {
         alert(
             "Attendance updated successfully!"
         );
-
 
         return;
 
@@ -537,15 +600,22 @@ function editAttendance(
     date
 ) {
 
+    refreshEmployees();
+
+    loadEmployees();
+
+
     const record =
-        attendanceRecords.find(function(record) {
+        attendanceRecords.find(
+            function(record) {
 
-            return (
-                record.employeeId === employeeId &&
-                record.date === date
-            );
+                return (
+                    record.employeeId === employeeId &&
+                    record.date === date
+                );
 
-        });
+            }
+        );
 
 
     if (!record) {
@@ -604,14 +674,16 @@ function deleteAttendance(
 
 
     attendanceRecords =
-        attendanceRecords.filter(function(record) {
+        attendanceRecords.filter(
+            function(record) {
 
-            return !(
-                record.employeeId === employeeId &&
-                record.date === date
-            );
+                return !(
+                    record.employeeId === employeeId &&
+                    record.date === date
+                );
 
-        });
+            }
+        );
 
 
     saveAttendance();
@@ -633,6 +705,9 @@ function deleteAttendance(
 
 function updateSummary() {
 
+    refreshEmployees();
+
+
     const selectedDate =
         document.getElementById(
             "attendanceDate"
@@ -640,47 +715,61 @@ function updateSummary() {
 
 
     const records =
-        attendanceRecords.filter(function(record) {
+        attendanceRecords.filter(
+            function(record) {
 
-            return record.date === selectedDate;
+                return record.date === selectedDate;
 
-        });
+            }
+        );
 
 
     document.getElementById(
         "totalEmployees"
     ).textContent =
-        employees.length;
+        employees.filter(
+            function(employee) {
+
+                return !employee.exitDate;
+
+            }
+        ).length;
 
 
     document.getElementById(
         "presentCount"
     ).textContent =
-        records.filter(function(record) {
+        records.filter(
+            function(record) {
 
-            return record.status === "Present";
+                return record.status === "Present";
 
-        }).length;
+            }
+        ).length;
 
 
     document.getElementById(
         "absentCount"
     ).textContent =
-        records.filter(function(record) {
+        records.filter(
+            function(record) {
 
-            return record.status === "Absent";
+                return record.status === "Absent";
 
-        }).length;
+            }
+        ).length;
 
 
     document.getElementById(
         "lateCount"
     ).textContent =
-        records.filter(function(record) {
+        records.filter(
+            function(record) {
 
-            return record.status === "Late";
+                return record.status === "Late";
 
-        }).length;
+            }
+        ).length;
 
 }
 
@@ -727,7 +816,7 @@ function viewHistory() {
         ).value;
 
 
-    if (historyDate === "") {
+    if (!historyDate) {
 
         alert(
             "Please select a date."
@@ -859,3 +948,49 @@ loadEmployees();
 displaySelectedDate();
 
 displayAttendance();
+// =====================================================
+// FILTER ATTENDANCE BY STATUS
+// =====================================================
+
+function filterAttendanceRows(status) {
+
+    const tbody = document.getElementById("attendanceBody");
+
+    const rows = tbody.querySelectorAll("tr");
+
+    rows.forEach(function(row) {
+
+        // Status column is column 5
+        // 0 = Employee ID
+        // 1 = Employee Name
+        // 2 = Department
+        // 3 = Date
+        // 4 = Status
+        // 5 = Action
+
+        const statusCell = row.cells[4];
+
+        if (!statusCell) {
+            return;
+        }
+
+        const rowStatus =
+            statusCell.textContent.trim();
+
+        if (status === "All") {
+
+            row.style.display = "";
+
+        } else if (rowStatus === status) {
+
+            row.style.display = "";
+
+        } else {
+
+            row.style.display = "none";
+
+        }
+
+    });
+
+}

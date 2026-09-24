@@ -53,10 +53,6 @@
                 🏢 Departments
             </a>
 
-            <a href="performance.html">
-                📊 Performance
-            </a>
-
             <a href="setting.html">
                 ⚙️ Settings
             </a>
@@ -286,105 +282,114 @@
 
             </div>
 
+<!-- =================================================
+     ATTENDANCE SUMMARY
+================================================= -->
+
+<div class="cards">
+
+    <!-- TOTAL EMPLOYEES -->
+
+    <div class="stat-card"
+         onclick="filterAttendanceRows('All')"
+         style="cursor: pointer;">
+
+        <span>
+            👥
+        </span>
+
+        <div>
+
+            <h3 id="totalEmployees">
+                0
+            </h3>
+
+            <p>
+                Total Employees
+            </p>
+
+        </div>
+
+    </div>
 
 
-            <!-- =================================================
-                 ATTENDANCE SUMMARY
-            ================================================== -->
+    <!-- PRESENT -->
 
-            <div class="cards">
+    <div class="stat-card"
+         onclick="filterAttendanceRows('Present')"
+         style="cursor: pointer;">
 
+        <span>
+            🟢
+        </span>
 
-                <div class="stat-card">
+        <div>
 
-                    <span>
-                        👥
-                    </span>
+            <h3 id="presentCount">
+                0
+            </h3>
 
-                    <div>
+            <p>
+                Present
+            </p>
 
-                        <h3 id="totalEmployees">
-                            0
-                        </h3>
+        </div>
 
-                        <p>
-                            Total Employees
-                        </p>
-
-                    </div>
-
-                </div>
+    </div>
 
 
+    <!-- ABSENT -->
 
-                <div class="stat-card">
+    <div class="stat-card"
+         onclick="filterAttendanceRows('Absent')"
+         style="cursor: pointer;">
 
-                    <span>
-                        🟢
-                    </span>
+        <span>
+            🔴
+        </span>
 
-                    <div>
+        <div>
 
-                        <h3 id="presentCount">
-                            0
-                        </h3>
+            <h3 id="absentCount">
+                0
+            </h3>
 
-                        <p>
-                            Present
-                        </p>
+            <p>
+                Absent
+            </p>
 
-                    </div>
+        </div>
 
-                </div>
-
-
-
-                <div class="stat-card">
-
-                    <span>
-                        🔴
-                    </span>
-
-                    <div>
-
-                        <h3 id="absentCount">
-                            0
-                        </h3>
-
-                        <p>
-                            Absent
-                        </p>
-
-                    </div>
-
-                </div>
+    </div>
 
 
+    <!-- LATE -->
 
-                <div class="stat-card">
+    <div class="stat-card"
+         onclick="filterAttendanceRows('Late')"
+         style="cursor: pointer;">
 
-                    <span>
-                        🟡
-                    </span>
+        <span>
+            🟡
+        </span>
 
-                    <div>
+        <div>
 
-                        <h3 id="lateCount">
-                            0
-                        </h3>
+            <h3 id="lateCount">
+                0
+            </h3>
 
-                        <p>
-                            Late
-                        </p>
+            <p>
+                Late
+            </p>
 
-                    </div>
+        </div>
 
-                </div>
+    </div>
 
+</div>
 
-            </div>
-
-
+            
 
             <!-- =================================================
                  ATTENDANCE TABLE
