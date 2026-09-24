@@ -212,6 +212,7 @@ const employeeData = [
 ];
 
 const employeeIdSearch = document.getElementById("employeeIdSearch");
+const searchPerformanceButton = document.getElementById("searchPerformanceButton");
 const performanceDetails = document.getElementById("performanceDetails");
 const breakdownBody = document.getElementById("breakdownBody");
 
@@ -384,7 +385,15 @@ if (breakdownBody) {
 }
 
 if (employeeIdSearch) {
-    employeeIdSearch.addEventListener("input", displayEmployeeByIdSearch);
+    employeeIdSearch.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            displayEmployeeByIdSearch();
+        }
+    });
+}
+
+if (searchPerformanceButton) {
+    searchPerformanceButton.addEventListener("click", displayEmployeeByIdSearch);
 }
 
 performanceDetails.classList.add("hidden");
