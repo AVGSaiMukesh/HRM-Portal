@@ -807,6 +807,24 @@ select:focus {
     min-width: 220px;
 }
 
+.employee-search-group {
+    min-width: 360px;
+}
+
+.employee-search-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.employee-search-controls input {
+    flex: 1;
+}
+
+.employee-search-controls .primary-btn {
+    margin: 0;
+    white-space: nowrap;
+}
+
 .field-group label {
     font-size: 14px;
     font-weight: 600;
