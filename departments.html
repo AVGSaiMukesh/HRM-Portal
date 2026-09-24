@@ -53,10 +53,6 @@
                 🏢 Departments
             </a>
 
-            <a href="performance.html">
-                📊 Performance
-            </a>
-
             <a href="setting.html">
                 ⚙️ Settings
             </a>
@@ -90,7 +86,7 @@
                 </h1>
 
                 <p>
-                    Manage company departments
+                    Filter and manage employees by department
                 </p>
 
             </div>
@@ -121,106 +117,39 @@
 
 
         <!-- =================================================
-             DEPARTMENT SECTION
+             DEPARTMENT EMPLOYEES SECTION
         ================================================== -->
 
         <section class="panel">
 
-
-            <!-- HEADER -->
-
-            <div class="panel-header">
+            <div class="panel-header" style="flex-wrap: wrap; gap: 14px;">
 
                 <div>
-
                     <h2>
-                        Department Management
+                        🏢 Department Employees
                     </h2>
-
-                    <p>
-                        Add and manage company departments
-                    </p>
-
+                    <p class="panel-subtitle">Filter and manage employees by department</p>
                 </div>
 
+                <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
 
-                <button
-                    class="primary-btn"
-                    id="addDepartmentBtn">
+                    <!-- Department Dropdown & Count Badge -->
+                    <div class="dept-select-group">
+                        <label for="departmentDropdown">Select Department:</label>
+                        <select id="departmentDropdown" class="dept-dropdown" onchange="onDepartmentSelectChange()">
+                            <!-- Dynamically loaded from database -->
+                        </select>
+                        <div class="dept-count-badge" id="deptCountBadge"
+                            title="Total employees in selected department">
+                            <span>👥</span>
+                            <span>Total Employees: <strong id="selectedDeptCount">0</strong></span>
+                        </div>
+                    </div>
 
-                    + Add Department
-
-                </button>
-
-            </div>
-
-
-
-            <!-- SEARCH -->
-
-            <div class="toolbar">
-
-                <input
-                    type="text"
-                    id="departmentSearch"
-                    placeholder="Search department...">
-
-            </div>
-
-
-
-            <!-- =================================================
-                 ADD DEPARTMENT FORM
-            ================================================== -->
-
-            <div
-                id="departmentForm"
-                class="form-box hidden">
-
-                <h2>
-                    Add Department
-                </h2>
-
-
-                <div class="form-grid">
-
-                    <input
-                        type="text"
-                        id="departmentName"
-                        placeholder="Department Name">
-
-
-                    <input
-                        type="text"
-                        id="departmentHead"
-                        placeholder="Department Head">
-
-
-                    <input
-                        type="text"
-                        id="departmentDescription"
-                        placeholder="Department Description">
-
-                </div>
-
-
-                <div class="form-actions">
-
-                    <button
-                        class="primary-btn"
-                        id="saveDepartmentBtn">
-
-                        Save Department
-
-                    </button>
-
-
-                    <button
-                        class="secondary-btn"
-                        id="cancelDepartmentBtn">
-
-                        Cancel
-
+                    <!-- Add Department Button -->
+                    <button class="primary-btn" id="addDepartmentBtn" onclick="openAddDepartmentModal()"
+                        style="display: inline-flex; align-items: center; gap: 6px;">
+                        <span>+</span> Add Department
                     </button>
 
                 </div>
@@ -228,120 +157,97 @@
             </div>
 
 
+            <div class="table-container">
 
-            <!-- =================================================
-                 SUMMARY CARDS
-            ================================================== -->
+                <table class="dept-table">
 
-            <div class="cards">
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Employee ID
+                            </th>
+
+                            <th>
+                                Employee Lead
+                            </th>
+
+                            <th>
+                                Employee Name
+                            </th>
+
+                            <th>
+                                Department
+                            </th>
+
+                            <th>
+                                Designation
+                            </th>
+
+                        </tr>
+
+                    </thead>
 
 
-                <div class="stat-card">
+                    <tbody id="deptEmployeeTableBody">
 
-                    <span>
-                        🏢
-                    </span>
+                        <!-- Dynamically rendered via JS -->
 
-                    <div>
+                    </tbody>
 
-                        <h3 id="departmentCount">
-                            0
-                        </h3>
-
-                        <p>
-                            Total Departments
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="stat-card">
-
-                    <span>
-                        👥
-                    </span>
-
-                    <div>
-
-                        <h3 id="departmentEmployees">
-                            0
-                        </h3>
-
-                        <p>
-                            Employees
-                        </p>
-
-                    </div>
-
-                </div>
+                </table>
 
             </div>
-
-
-
-            <!-- =================================================
-                 DEPARTMENT TABLE
-            ================================================== -->
-
-            <div class="panel-header">
-
-                <h2>
-                    Department List
-                </h2>
-
-            </div>
-
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            Department ID
-                        </th>
-
-                        <th>
-                            Department
-                        </th>
-
-                        <th>
-                            Department Head
-                        </th>
-
-                        <th>
-                            Employees
-                        </th>
-
-                        <th>
-                            Description
-                        </th>
-
-                        <th>
-                            Action
-                        </th>
-
-                        <th>
-                            Delete
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-
-                <tbody id="departmentBody">
-                </tbody>
-
-            </table>
-
 
         </section>
 
+
+
+        <!-- ================= ADD DEPARTMENT MODAL ================= -->
+
+        <div id="addDepartmentModal" class="modal-overlay">
+
+            <div class="modal-card">
+
+                <div class="modal-header">
+                    <h3>Add Department</h3>
+                    <button class="modal-close-btn" onclick="closeAddDepartmentModal()">✕</button>
+                </div>
+
+                <form id="addDepartmentForm" onsubmit="saveNewDepartment(event)">
+
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="departmentName">Department Name</label>
+                            <input type="text" id="departmentName" placeholder="e.g. Engineering, IT, HR" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="departmentHead">Department Head</label>
+                            <input type="text" id="departmentHead" placeholder="e.g. Rahul Kumar" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="departmentDescription">Description</label>
+                            <textarea id="departmentDescription" placeholder="Short description of the department"
+                                rows="3" style="resize: vertical;"></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            onclick="closeAddDepartmentModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Department</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
 
     </main>
 
