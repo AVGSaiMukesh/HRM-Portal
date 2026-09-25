@@ -1738,4 +1738,16 @@ select:focus {
 
 .table-panel tbody tr:last-child td {
     border-bottom: none;
+}
+
+.no-match-message {
+    background: #fef2f2;
+    border: 1px dashed #fca5a5;
+    color: #b91c1c;
+    padding: 18px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    margin: 15px 0 20px;
 }
