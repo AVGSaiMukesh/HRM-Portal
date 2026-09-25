@@ -434,15 +434,16 @@ function saveSystemSettings() {
 }
 
 
+
 // =====================================================
 // LOGOUT
 // =====================================================
 
 function logout() {
 
-    alert(
-        "Logged out successfully!"
-    );
+    localStorage.removeItem("adminLoggedIn");
+
+    window.location.href = "login.html";
 
 }
 

@@ -52,7 +52,7 @@ function loadEmployees() {
     `;
 
 
-    employees.forEach(function(employee) {
+    employees.forEach(function (employee) {
 
         const option =
             document.createElement("option");
@@ -95,7 +95,7 @@ function displayLeaves() {
 
 
     let filteredLeaves =
-        leaveRecords.filter(function(leave) {
+        leaveRecords.filter(function (leave) {
 
             return (
                 leave.name
@@ -114,7 +114,7 @@ function displayLeaves() {
         });
 
 
-    filteredLeaves.forEach(function(leave) {
+    filteredLeaves.forEach(function (leave) {
 
         const row =
             document.createElement("tr");
@@ -245,11 +245,11 @@ function addLeaveTableEvents() {
         );
 
 
-    buttons.forEach(function(button) {
+    buttons.forEach(function (button) {
 
         button.addEventListener(
             "click",
-            function() {
+            function () {
 
                 const leaveId =
                     this.getAttribute(
@@ -415,7 +415,7 @@ function saveLeave() {
     // FIND EMPLOYEE
 
     const employee =
-        employees.find(function(employee) {
+        employees.find(function (employee) {
 
             return employee.id === employeeId;
 
@@ -497,7 +497,7 @@ function saveLeave() {
 function approveLeave(leaveId) {
 
     const leave =
-        leaveRecords.find(function(leave) {
+        leaveRecords.find(function (leave) {
 
             return leave.id === leaveId;
 
@@ -534,7 +534,7 @@ function approveLeave(leaveId) {
 function rejectLeave(leaveId) {
 
     const leave =
-        leaveRecords.find(function(leave) {
+        leaveRecords.find(function (leave) {
 
             return leave.id === leaveId;
 
@@ -584,7 +584,7 @@ function deleteLeave(leaveId) {
 
 
     leaveRecords =
-        leaveRecords.filter(function(leave) {
+        leaveRecords.filter(function (leave) {
 
             return leave.id !== leaveId;
 
@@ -618,7 +618,7 @@ function updateLeaveSummary() {
     document.getElementById(
         "pendingLeave"
     ).textContent =
-        leaveRecords.filter(function(leave) {
+        leaveRecords.filter(function (leave) {
 
             return leave.status === "Pending";
 
@@ -628,7 +628,7 @@ function updateLeaveSummary() {
     document.getElementById(
         "approvedLeave"
     ).textContent =
-        leaveRecords.filter(function(leave) {
+        leaveRecords.filter(function (leave) {
 
             return leave.status === "Approved";
 
@@ -638,7 +638,7 @@ function updateLeaveSummary() {
     document.getElementById(
         "rejectedLeave"
     ).textContent =
-        leaveRecords.filter(function(leave) {
+        leaveRecords.filter(function (leave) {
 
             return leave.status === "Rejected";
 
@@ -658,15 +658,16 @@ function searchLeaves() {
 }
 
 
+
 // =====================================================
 // LOGOUT
 // =====================================================
 
 function logout() {
 
-    alert(
-        "Logged out successfully!"
-    );
+    localStorage.removeItem("adminLoggedIn");
+
+    window.location.href = "login.html";
 
 }
 

@@ -143,7 +143,7 @@ function populateDepartmentDropdown() {
 
     if (deptDropdown) {
         const currentSelected = deptDropdown.value;
-        deptDropdown.innerHTML = departments.map(dept => 
+        deptDropdown.innerHTML = departments.map(dept =>
             `<option value="${dept.name}">${dept.name}</option>`
         ).join("");
 
@@ -172,7 +172,7 @@ function displayDepartmentEmployees(selectedDept) {
 
     tableBody.innerHTML = "";
 
-    const deptEmployees = employees.filter(emp => 
+    const deptEmployees = employees.filter(emp =>
         (emp.department || "").trim().toLowerCase() === department.trim().toLowerCase()
     );
 
@@ -193,7 +193,7 @@ function displayDepartmentEmployees(selectedDept) {
         return;
     }
 
-    deptEmployees.forEach(function(emp) {
+    deptEmployees.forEach(function (emp) {
         const row = document.createElement("tr");
         row.innerHTML = `
             <td>${emp.id}</td>
@@ -275,16 +275,15 @@ function saveNewDepartment(event) {
 }
 
 
-// =====================================================
-// LOGOUT
-// =====================================================
+
 
 function logout() {
     localStorage.removeItem("adminLoggedIn");
     window.location.href = "login.html";
 }
 
-document.getElementById("logoutBtn")?.addEventListener("click", logout);
+
+
 
 
 // =====================================================

@@ -94,9 +94,9 @@ function updatePresentCount() {
 
     let presentCount = 0;
 
-    employees.forEach(function(employee) {
+    employees.forEach(function (employee) {
 
-        const record = attendanceRecords.find(function(attendance) {
+        const record = attendanceRecords.find(function (attendance) {
 
             return (
                 attendance.employeeId === employee.id &&
@@ -136,13 +136,13 @@ function updateLeaveCount() {
     let leaveCount = 0;
 
 
-    employees.forEach(function(employee) {
+    employees.forEach(function (employee) {
 
         let isOnLeave = false;
 
 
         // Check attendance
-        const attendance = attendanceRecords.find(function(record) {
+        const attendance = attendanceRecords.find(function (record) {
 
             return (
                 record.employeeId === employee.id &&
@@ -163,7 +163,7 @@ function updateLeaveCount() {
         // Check approved leave
         if (!isOnLeave) {
 
-            const approvedLeave = leaveRecords.find(function(leave) {
+            const approvedLeave = leaveRecords.find(function (leave) {
 
                 return (
                     leave.employeeId === employee.id &&
@@ -210,7 +210,7 @@ function updatePayroll() {
     let totalPayroll = 0;
 
 
-    payrollRecords.forEach(function(record) {
+    payrollRecords.forEach(function (record) {
 
         const netSalary = Number(record.netSalary) || 0;
 
@@ -241,21 +241,21 @@ const recentEmployeesPanel = document.getElementById("recentEmployeesPanel");
 const dashboardGrid = document.querySelector(".dashboard-grid");
 
 if (recentEmployeesPanel && dashboardGrid) {
-    recentEmployeesPanel.addEventListener("dragstart", function(event) {
+    recentEmployeesPanel.addEventListener("dragstart", function (event) {
         event.dataTransfer.setData("text/plain", "recentEmployeesPanel");
         event.dataTransfer.effectAllowed = "move";
         recentEmployeesPanel.classList.add("dragging");
     });
 
-    recentEmployeesPanel.addEventListener("dragend", function() {
+    recentEmployeesPanel.addEventListener("dragend", function () {
         recentEmployeesPanel.classList.remove("dragging");
     });
 
-    dashboardGrid.addEventListener("dragover", function(event) {
+    dashboardGrid.addEventListener("dragover", function (event) {
         event.preventDefault();
     });
 
-    dashboardGrid.addEventListener("drop", function(event) {
+    dashboardGrid.addEventListener("drop", function (event) {
         event.preventDefault();
 
         const targetPanel = event.target.closest(".panel");
@@ -303,7 +303,7 @@ function displayRecentEmployees() {
         employees.slice(-5).reverse();
 
 
-    recentEmployees.forEach(function(employee) {
+    recentEmployees.forEach(function (employee) {
 
         const row = document.createElement("tr");
 
@@ -432,7 +432,7 @@ function renderNotifications() {
 
     if (!listEl) return;
 
-    const unreadCount = notifications.filter(function(n) {
+    const unreadCount = notifications.filter(function (n) {
         return n.unread;
     }).length;
 
@@ -459,7 +459,7 @@ function renderNotifications() {
         return;
     }
 
-    listEl.innerHTML = notifications.map(function(item) {
+    listEl.innerHTML = notifications.map(function (item) {
         return `
         <div class="notification-item ${item.unread ? 'unread' : ''}" onclick="toggleNotificationRead(${item.id})">
             <div class="notif-icon-box ${item.category}">
@@ -486,7 +486,7 @@ function toggleNotificationDropdown() {
 }
 
 function markAllNotificationsAsRead() {
-    const notifications = getNotifications().map(function(item) {
+    const notifications = getNotifications().map(function (item) {
         return {
             ...item,
             unread: false
@@ -496,7 +496,7 @@ function markAllNotificationsAsRead() {
 }
 
 function toggleNotificationRead(id) {
-    const notifications = getNotifications().map(function(item) {
+    const notifications = getNotifications().map(function (item) {
         if (item.id === id) {
             return { ...item, unread: !item.unread };
         }
@@ -509,7 +509,7 @@ function deleteNotification(event, id) {
     if (event) {
         event.stopPropagation();
     }
-    const notifications = getNotifications().filter(function(item) {
+    const notifications = getNotifications().filter(function (item) {
         return item.id !== id;
     });
     saveNotifications(notifications);
@@ -519,7 +519,7 @@ function clearAllNotifications() {
     saveNotifications([]);
 }
 
-document.addEventListener("click", function(event) {
+document.addEventListener("click", function (event) {
     const wrapper = document.getElementById("notificationWrapper");
     const dropdown = document.getElementById("notificationDropdown");
     if (wrapper && dropdown && dropdown.classList.contains("active")) {
@@ -545,28 +545,15 @@ function loadDashboard() {
 }
 
 
-// -----------------------------------------------------
+// =====================================================
 // LOGOUT
-// -----------------------------------------------------
-
-//function logout() {
-
-   // localStorage.removeItem("adminLoggedIn");
-
-   // alert("Logged out successfully!");
-
-   // window.location.href = "login.html";
-
-//}
-// -----------------------------------------------------
-// LOGOUT
-// -----------------------------------------------------
+// =====================================================
 
 function logout() {
 
     localStorage.removeItem("adminLoggedIn");
 
-    window.location.href = "logout.html";
+    window.location.href = "login.html";
 
 }
 

@@ -78,7 +78,7 @@ function getDashboardEmployee(employeeId) {
 
     for (const storageKey of storageKeys) {
         const employees = JSON.parse(localStorage.getItem(storageKey) || "[]");
-        const employee = employees.find(function(item) {
+        const employee = employees.find(function (item) {
             return String(item.id).toLowerCase() === String(employeeId).toLowerCase();
         });
 
@@ -112,7 +112,7 @@ function displayEmployeeByIdSearch() {
         return;
     }
 
-    let employee = employeeData.find(function(item) {
+    let employee = employeeData.find(function (item) {
         return String(item.id).toLowerCase() === searchText.toLowerCase();
     });
 
@@ -155,7 +155,7 @@ function calculateOverallPerformance(performance) {
         performance.attendance
     ];
 
-    const total = values.reduce(function(sum, currentValue) {
+    const total = values.reduce(function (sum, currentValue) {
         return sum + clampPercentage(currentValue);
     }, 0);
 
@@ -177,7 +177,7 @@ function renderBreakdown(data) {
         { category: "Attendance", field: "attendance", target: "95%", value: data.attendance }
     ];
 
-    rows.forEach(function(item) {
+    rows.forEach(function (item) {
         const row = document.createElement("tr");
 
         row.innerHTML = `
@@ -206,7 +206,7 @@ function updatePerformanceView(selectedEmployeeId) {
         return;
     }
 
-    const employee = employeeData.find(function(item) {
+    const employee = employeeData.find(function (item) {
         return String(item.id).toLowerCase() === String(selectedEmployeeId).toLowerCase();
     });
 
@@ -230,7 +230,7 @@ function updatePerformanceView(selectedEmployeeId) {
 }
 
 if (breakdownBody) {
-    breakdownBody.addEventListener("input", function(event) {
+    breakdownBody.addEventListener("input", function (event) {
         const input = event.target;
 
         if (!input.matches("[data-breakdown-field]")) {
@@ -238,7 +238,7 @@ if (breakdownBody) {
         }
 
         const selectedEmployeeId = employeeIdSearch.value.trim().replace(/^0+(?=\d)/, "");
-        const employee = employeeData.find(function(item) {
+        const employee = employeeData.find(function (item) {
             return String(item.id).toLowerCase() === selectedEmployeeId.toLowerCase();
         });
 
@@ -262,7 +262,7 @@ if (breakdownBody) {
 }
 
 if (employeeIdSearch) {
-    employeeIdSearch.addEventListener("keydown", function(event) {
+    employeeIdSearch.addEventListener("keydown", function (event) {
         if (event.key === "Enter") {
             displayEmployeeByIdSearch();
         }
@@ -275,4 +275,19 @@ if (searchPerformanceButton) {
 
 if (performanceDetails) {
     performanceDetails.classList.add("hidden");
+}
+
+
+
+
+// =====================================================
+// LOGOUT
+// =====================================================
+
+function logout() {
+
+    localStorage.removeItem("adminLoggedIn");
+
+    window.location.href = "login.html";
+
 }

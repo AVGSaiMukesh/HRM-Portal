@@ -49,11 +49,11 @@ function getToday() {
 
     const month =
         String(today.getMonth() + 1)
-        .padStart(2, "0");
+            .padStart(2, "0");
 
     const day =
         String(today.getDate())
-        .padStart(2, "0");
+            .padStart(2, "0");
 
     return `${year}-${month}-${day}`;
 
@@ -120,7 +120,7 @@ function loadEmployees() {
     `;
 
 
-    employees.forEach(function(employee) {
+    employees.forEach(function (employee) {
 
         // Don't show employees who have exited
         if (employee.exitDate) {
@@ -210,7 +210,7 @@ function displayAttendance() {
 
     let recordsForDate =
         attendanceRecords.filter(
-            function(record) {
+            function (record) {
 
                 return record.date === selectedDate;
 
@@ -232,7 +232,7 @@ function displayAttendance() {
 
     recordsForDate =
         recordsForDate.filter(
-            function(record) {
+            function (record) {
 
                 return record.name
                     .toLowerCase()
@@ -243,7 +243,7 @@ function displayAttendance() {
 
 
     recordsForDate.forEach(
-        function(record) {
+        function (record) {
 
             const row =
                 document.createElement("tr");
@@ -353,11 +353,11 @@ function addTableEvents() {
 
 
     buttons.forEach(
-        function(button) {
+        function (button) {
 
             button.addEventListener(
                 "click",
-                function() {
+                function () {
 
                     const employeeId =
                         this.getAttribute(
@@ -492,7 +492,7 @@ function saveAttendanceRecord() {
 
     const employee =
         employees.find(
-            function(employee) {
+            function (employee) {
 
                 return employee.id === employeeId;
 
@@ -513,7 +513,7 @@ function saveAttendanceRecord() {
 
     const existingRecord =
         attendanceRecords.find(
-            function(record) {
+            function (record) {
 
                 return (
                     record.employeeId === employeeId &&
@@ -607,7 +607,7 @@ function editAttendance(
 
     const record =
         attendanceRecords.find(
-            function(record) {
+            function (record) {
 
                 return (
                     record.employeeId === employeeId &&
@@ -675,7 +675,7 @@ function deleteAttendance(
 
     attendanceRecords =
         attendanceRecords.filter(
-            function(record) {
+            function (record) {
 
                 return !(
                     record.employeeId === employeeId &&
@@ -716,7 +716,7 @@ function updateSummary() {
 
     const records =
         attendanceRecords.filter(
-            function(record) {
+            function (record) {
 
                 return record.date === selectedDate;
 
@@ -728,7 +728,7 @@ function updateSummary() {
         "totalEmployees"
     ).textContent =
         employees.filter(
-            function(employee) {
+            function (employee) {
 
                 return !employee.exitDate;
 
@@ -740,7 +740,7 @@ function updateSummary() {
         "presentCount"
     ).textContent =
         records.filter(
-            function(record) {
+            function (record) {
 
                 return record.status === "Present";
 
@@ -752,7 +752,7 @@ function updateSummary() {
         "absentCount"
     ).textContent =
         records.filter(
-            function(record) {
+            function (record) {
 
                 return record.status === "Absent";
 
@@ -764,7 +764,7 @@ function updateSummary() {
         "lateCount"
     ).textContent =
         records.filter(
-            function(record) {
+            function (record) {
 
                 return record.status === "Late";
 
@@ -846,11 +846,13 @@ function viewHistory() {
 
 function logout() {
 
-    alert(
-        "Logged out successfully!"
-    );
+    localStorage.removeItem("adminLoggedIn");
+
+    window.location.href = "login.html";
 
 }
+
+
 
 
 // =====================================================
@@ -885,7 +887,7 @@ document
     .getElementById("attendanceDate")
     .addEventListener(
         "change",
-        function() {
+        function () {
 
             displaySelectedDate();
 
@@ -958,7 +960,7 @@ function filterAttendanceRows(status) {
 
     const rows = tbody.querySelectorAll("tr");
 
-    rows.forEach(function(row) {
+    rows.forEach(function (row) {
 
         // Status column is column 5
         // 0 = Employee ID

@@ -102,7 +102,7 @@ function displayEmployees(employees) {
     employeeBody.innerHTML = "";
 
 
-    employees.forEach(function(employee) {
+    employees.forEach(function (employee) {
 
         const row =
             document.createElement("tr");
@@ -146,21 +146,20 @@ function displayEmployees(employees) {
 
             <td>
 
-                ${
-                    employee.exitDate
+                ${employee.exitDate
 
-                    ? `
+                ? `
                         <span class="exit-date">
                             ${formatDate(employee.exitDate)}
                         </span>
                       `
 
-                    : `
+                : `
                         <span class="working-date">
                             Working
                         </span>
                       `
-                }
+            }
 
             </td>
 
@@ -494,7 +493,7 @@ function editEmployee(employeeId) {
 
     const employee =
         employees.find(
-            function(emp) {
+            function (emp) {
 
                 return emp.id === employeeId;
 
@@ -574,7 +573,7 @@ function editEmployee(employeeId) {
 
 
     saveButton.onclick =
-        function() {
+        function () {
 
             updateEmployee(
                 employeeId
@@ -608,7 +607,7 @@ function updateEmployee(employeeId) {
 
     const employeeIndex =
         employees.findIndex(
-            function(emp) {
+            function (emp) {
 
                 return emp.id === employeeId;
 
@@ -785,7 +784,7 @@ function deleteEmployee(employeeId) {
 
     employees =
         employees.filter(
-            function(employee) {
+            function (employee) {
 
                 return employee.id !== employeeId;
 
@@ -829,7 +828,7 @@ function searchEmployees() {
 
     const filteredEmployees =
         employees.filter(
-            function(employee) {
+            function (employee) {
 
                 return (
 
@@ -905,7 +904,7 @@ function generateEmployeeId(
 
 
     employees.forEach(
-        function(employee) {
+        function (employee) {
 
             const match =
                 employee.id.match(
@@ -979,24 +978,19 @@ function formatDate(
 }
 
 
-// ======================================================
+
+// =====================================================
 // LOGOUT
-// ======================================================
+// =====================================================
 
 function logout() {
 
-    if (
-        confirm(
-            "Are you sure you want to logout?"
-        )
-    ) {
+    localStorage.removeItem("adminLoggedIn");
 
-        window.location.href =
-            "login.html";
-
-    }
+    window.location.href = "login.html";
 
 }
+
 
 
 // ======================================================
@@ -1005,7 +999,7 @@ function logout() {
 
 document.addEventListener(
     "DOMContentLoaded",
-    function() {
+    function () {
 
         initializeEmployees();
 

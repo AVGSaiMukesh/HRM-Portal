@@ -52,7 +52,7 @@ function loadEmployees() {
     `;
 
 
-    employees.forEach(function(employee) {
+    employees.forEach(function (employee) {
 
         const option =
             document.createElement("option");
@@ -95,7 +95,7 @@ function displayPayroll() {
 
 
     let filteredRecords =
-        payrollRecords.filter(function(record) {
+        payrollRecords.filter(function (record) {
 
             return (
                 record.name
@@ -110,7 +110,7 @@ function displayPayroll() {
         });
 
 
-    filteredRecords.forEach(function(record) {
+    filteredRecords.forEach(function (record) {
 
         const row =
             document.createElement("tr");
@@ -201,11 +201,11 @@ function addPayrollTableEvents() {
         );
 
 
-    buttons.forEach(function(button) {
+    buttons.forEach(function (button) {
 
         button.addEventListener(
             "click",
-            function() {
+            function () {
 
                 const payrollId =
                     this.getAttribute(
@@ -361,7 +361,7 @@ function savePayroll() {
     // FIND EMPLOYEE
 
     const employee =
-        employees.find(function(employee) {
+        employees.find(function (employee) {
 
             return employee.id === employeeId;
 
@@ -382,7 +382,7 @@ function savePayroll() {
     // CHECK EXISTING PAYROLL
 
     const existingRecord =
-        payrollRecords.find(function(record) {
+        payrollRecords.find(function (record) {
 
             return record.employeeId === employeeId;
 
@@ -484,7 +484,7 @@ function savePayroll() {
 function editPayroll(payrollId) {
 
     const record =
-        payrollRecords.find(function(record) {
+        payrollRecords.find(function (record) {
 
             return record.id === payrollId;
 
@@ -547,7 +547,7 @@ function deletePayroll(payrollId) {
 
 
     payrollRecords =
-        payrollRecords.filter(function(record) {
+        payrollRecords.filter(function (record) {
 
             return record.id !== payrollId;
 
@@ -574,7 +574,7 @@ function updatePayrollSummary() {
 
     const totalBasic =
         payrollRecords.reduce(
-            function(total, record) {
+            function (total, record) {
 
                 return total +
                     record.basicSalary;
@@ -586,7 +586,7 @@ function updatePayrollSummary() {
 
     const totalAllowance =
         payrollRecords.reduce(
-            function(total, record) {
+            function (total, record) {
 
                 return total +
                     record.allowance;
@@ -598,7 +598,7 @@ function updatePayrollSummary() {
 
     const totalNetSalary =
         payrollRecords.reduce(
-            function(total, record) {
+            function (total, record) {
 
                 return total +
                     record.netSalary;
@@ -654,9 +654,9 @@ function searchPayroll() {
 
 function logout() {
 
-    alert(
-        "Logged out successfully!"
-    );
+    localStorage.removeItem("adminLoggedIn");
+
+    window.location.href = "login.html";
 
 }
 
